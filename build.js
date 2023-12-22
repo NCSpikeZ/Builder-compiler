@@ -2,7 +2,6 @@
 const express = require('express');
 const sass = require('sass');
 const path = require('path');
-const { execSync } = require('child_process');
 const fs = require('fs');
 const CleanCSS = require('clean-css');
 const UglifyJS = require('uglify-js');
@@ -14,17 +13,13 @@ app.set('view engine', 'pug'); // Configuration de Pug comme moteur de modèle
 
 app.use(express.static(path.join(__dirname, 'src', 'public')));
 
-app.get('/', (req, res) => {
-  res.render('index'); // Rend le fichier index.pug
-});
-
 // Compilation du Sass en CSS
 const result = sass.renderSync({
   file: path.join(__dirname, 'src', 'assets', 'sass', 'styles.scss')
 });
 
 // Minification du CSS
-const minifiedCSS = new CleanCSS().minify(result.css.toString()).styles;
+const minifiedCSS = new CleanCSS({ compatibility: 'ie7' }).minify(result.css.toString()).styles;
 const compiledCSS = `<style>${minifiedCSS}</style>`;
 
 // Compilation et minification du JavaScript

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prefix": "postcss src/assets/sass/styles.scss --use autoprefixer -d src/assets/sass/prefixed",
     "start": "node build.js",
     "build": "node build.js",
     "build:sass": "sass src/assets/sass/styles.scss src/assets/css/styles.css",
@@ -13,6 +14,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "browserslist": "last 4 versions",
   "dependencies": {
     "@babel/cli": "^7.23.4",
     "@babel/preset-env": "^7.23.6",

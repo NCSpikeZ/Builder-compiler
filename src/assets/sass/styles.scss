@@ -5,11 +5,14 @@ body {
   font-family: Arial, sans-serif;
   background-color: $primary-color;
   color: white;
+  background-size: cover;
+  object-fit: cover;
 }
 
 h1 {
   font-size: 2em;
   margin-bottom: 20px;
+  opacity: 0.5;
 }
 
 p {
