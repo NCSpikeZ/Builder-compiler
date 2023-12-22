@@ -5,11 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "build": "sass src/assets/sass/styles.scss | babel src/assets/js | node server.js",
+    "start": "node build.js",
+    "build": "npm run build:sass && npm run build:js && node build.js",
     "build:sass": "sass src/assets/sass/styles.scss src/public/styles.css",
-    "build:js": "babel src/assets/js --out-dir src/public"
-  },
+    "build:js": "babel src/assets/js --out-file src/public/script.js"
+  },  
   "keywords": [],
   "author": "",
   "license": "ISC",
