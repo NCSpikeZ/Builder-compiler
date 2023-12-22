@@ -7,7 +7,7 @@ const fs = require('fs');
 const CleanCSS = require('clean-css');
 const UglifyJS = require('uglify-js');
 
-// J'initialise instance express
+// J'initialise l'instance express
 const app = express();
 
 app.use(express.static(path.join(__dirname, 'src', 'public')));
@@ -21,7 +21,7 @@ const result = sass.renderSync({
 const minifiedCSS = new CleanCSS().minify(result.css.toString()).styles;
 const compiledCSS = `<style>${minifiedCSS}</style>`;
 
-// Transpilation et minification du JavaScript
+// Compilation et minification du JavaScript
 const jsContent = fs.readFileSync(path.join(__dirname, 'src', 'assets', 'js', 'script.js'), 'utf8');
 const minifiedJS = UglifyJS.minify(jsContent).code;
 const compiledJS = `<script>${minifiedJS}</script>`;
