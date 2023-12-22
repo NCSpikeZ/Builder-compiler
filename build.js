@@ -14,6 +14,10 @@ app.set('view engine', 'pug'); // Configuration de Pug comme moteur de modèle
 
 app.use(express.static(path.join(__dirname, 'src', 'public')));
 
+app.get('/', (req, res) => {
+  res.render('index'); // Rend le fichier index.pug
+});
+
 // Compilation du Sass en CSS
 const result = sass.renderSync({
   file: path.join(__dirname, 'src', 'assets', 'sass', 'styles.scss')
