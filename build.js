@@ -10,6 +10,8 @@ const UglifyJS = require('uglify-js');
 // J'initialise l'instance express
 const app = express();
 
+app.set('view engine', 'pug'); // Configuration de Pug comme moteur de modèle
+
 app.use(express.static(path.join(__dirname, 'src', 'public')));
 
 // Compilation du Sass en CSS
@@ -26,16 +28,16 @@ const jsContent = fs.readFileSync(path.join(__dirname, 'src', 'assets', 'js', 's
 const minifiedJS = UglifyJS.minify(jsContent).code;
 const compiledJS = `<script>${minifiedJS}</script>`;
 
-const indexFilePath = path.join(__dirname, 'src', 'public', 'index.html');
+const indexFilePath = path.join(__dirname, 'src', 'public', 'index.pug');
 
-// Lecture du fichier index.html
+// Lecture du fichier index.pug
 let indexHTML = fs.readFileSync(indexFilePath, 'utf8');
 
-// Remplacement des balises de style et de script dans index.html
+// Remplacement des balises de style et de script dans index.pug
 indexHTML = indexHTML.replace('<!-- INSERT_CSS_HERE -->', compiledCSS);
 indexHTML = indexHTML.replace('<!-- INSERT_JS_HERE -->', compiledJS);
 
-// Écriture du fichier index.html mis à jour
+// Écriture du fichier index.pug mis à jour
 fs.writeFileSync(indexFilePath, indexHTML);
 
 const PORT = process.env.PORT || 3000;
