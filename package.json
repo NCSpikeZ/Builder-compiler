@@ -1,0 +1,24 @@
+{
+  "name": "builder",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "build": "sass src/assets/sass/styles.scss | babel src/assets/js | node server.js",
+    "build:sass": "sass src/assets/sass/styles.scss src/public/styles.css",
+    "build:js": "babel src/assets/js --out-dir src/public"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.23.4",
+    "@babel/preset-env": "^7.23.6",
+    "clean-css": "^5.3.3",
+    "express": "^4.18.2",
+    "sass": "^1.69.5",
+    "uglify-js": "^3.17.4"
+  }
+}
